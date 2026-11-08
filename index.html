@@ -1647,7 +1647,7 @@
             if (savedUser) {
                 document.getElementById('display-user-name').innerText = savedUser;
 
-                if (savedUser === "haiyen" && savedPass === "123456") {
+                if (savedUser === "Admin" && savedPass === "999999") {
                     document.getElementById('key-expiry-display').innerHTML = `<span style="color: #2563eb;">Admin Master</span>`;
                     document.getElementById('login-overlay').style.display = 'none';
                     return;
@@ -1673,7 +1673,7 @@
                 return;
             }
 
-            if (user === "haiyen" && pass === "123456") {
+            if (user === "Admin" && pass === "999999") {
                 localStorage.setItem("quangvinh_logged_user", user);
                 localStorage.setItem("quangvinh_logged_pass", pass);
                 document.getElementById('display-user-name').innerText = user;
