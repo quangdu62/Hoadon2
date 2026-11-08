@@ -732,14 +732,14 @@
     <div class="main-area">
         <div class="tab-bar">
             <div class="tab-buttons">
-                <button class="tab-btn active" onclick="switchTab(1, this)">1. HĐ Khách Đăng Ký Xe</button>
-                <button class="tab-btn" onclick="switchTab(2, this)">2. Thỏa Thuận Mất Xe</button>
-                <button class="tab-btn" onclick="switchTab(3, this)">3. Biên Bản Bàn Giao Xe</button>
-                <button class="tab-btn" onclick="switchTab(4, this)">4. Biên Nhận CH5</button>
-                <button class="tab-btn" onclick="switchTab(5, this)">5. Thỏa Thuận Mất Xe CH5</button>
-                <button class="tab-btn" onclick="switchTab(6, this)">6. Biên Bản Bàn Giao Xe CH5</button>
-                <button class="tab-btn" onclick="switchTab(7, this)">7. In Mã Vận Đơn (1/2 A4)</button>
-                <button class="tab-btn" onclick="switchTab(8, this)">8. QR HD Saison</button>
+                <button class="tab-btn active" onclick="switchTab(1, this)">1. Biên Nhận VF8</button>
+                <button class="tab-btn" onclick="switchTab(2, this)">2. Thỏa Thuận Mất Xe VF8</button>
+                <button class="tab-btn" onclick="switchTab(3, this)">3. Biên Bản Bàn Giao Xe VF8</button>
+                <button class="tab-btn" onclick="switchTab(4, this)">4. Biên Nhận &#128541; Thoa - Ngơ &#128541;</button>
+                <button class="tab-btn" onclick="switchTab(5, this)">5. Thỏa Thuận Mất Xe &#128541; Thoa - Ngơ &#128541;</button>
+                <button class="tab-btn" onclick="switchTab(6, this)">6. Biên Bản Bàn Giao Xe &#128541; Thoa - Ngơ &#128541;</button>
+                <button class="tab-btn" onclick="switchTab(7, this)">7.&#128386; In Mã Vận Đơn &#128234; </button>
+                <button class="tab-btn" onclick="switchTab(8, this)">8.&#128184; QR HD Saison &#128184;</button>
             </div>
             <button class="btn-print-top" onclick="window.print()">🖨️ IN MẪU ĐANG CHỌN</button>
         </div>
@@ -986,7 +986,7 @@
                         <p><b>BÊN BÁN: CÔNG TY TNHH KINH DOANH DỊCH VỤ QUANG VINH</b></p>
                         <p>Địa chỉ: Số 127 đường 14/10, Tiền Hải Hưng Yên</p>
                         <p>Mã số doanh nghiệp: 1001012641 SĐT: 0929.116.288 </p>
-                        <p>Đại diện: Bùi Thị Hải Yến - Chức vụ: Cửa hàng trưởng</p>
+                        <p>Đại diện: Bùi Thị Hải Yến - Chức vụ: Kế Toán Tổng Hợp</p>
                     </div>
                     <div style="width: 48%; border-left: 1px solid #000; padding-left: 10px;">
                         <p><b>KHÁCH HÀNG: <span class="out_hoten bold" style="color: red;"></span></b></p>
@@ -1769,8 +1769,19 @@
         function updateKeyBadgeDisplay(totalDays, latestDate) {
             let badge = document.getElementById('key-expiry-display');
             if (!badge) return;
+
+            // Xử lý làm đẹp lại chuỗi ngày tháng từ server trả về
+            let formattedDate = latestDate;
+            let dObj = new Date(latestDate);
+            if (!isNaN(dObj.getTime())) {
+                let dDay = ("0" + dObj.getDate()).slice(-2);
+                let dMonth = ("0" + (dObj.getMonth() + 1)).slice(-2);
+                let dYear = dObj.getFullYear();
+                formattedDate = `${dDay}/${dMonth}/${dYear}`;
+            }
+
             if (totalDays > 0) {
-                badge.innerHTML = `<span style="color: #16a34a;">Còn ${totalDays} ngày (Đến ${latestDate})</span>`;
+                badge.innerHTML = `<span style="color: #16a34a;">Còn ${totalDays} ngày (Đến ${formattedDate})</span>`;
             } else {
                 badge.innerHTML = `<span style="color: #dc2626;">Đã hết hạn</span>`;
             }
