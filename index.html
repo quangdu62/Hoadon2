@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Quản Lý & In Biểu Mẫu Tự Động - Công Ty Quang Vinh</title>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    
+    <style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -704,9 +708,18 @@
                 <div style="font-size:11px; color:#666; font-style:italic;">Số tiền thanh toán hàng tháng chưa phát sinh phí phạt</div>
             </div>
             <div class="form-group">
-                <label>Số Hợp Đồng / Số Thẻ:</label>
-                <input type="text" id="qr_contract" placeholder="VD: DL038007989">
-            </div>
+    <label>Số Hợp Đồng / Số Thẻ:</label>
+    <div style="display: flex; gap: 6px;">
+        <input type="text" id="qr_contract" placeholder="VD: DL038007989" style="flex: 1; margin-top: 0;">
+        <button type="button" onclick="startQRScanner()" style="margin-top: 0; padding: 0 12px; width: auto; background: #2563eb; font-size: 13px; border-radius: 6px;">📷 Quét QR</button>
+    </div>
+</div>
+
+<!-- Khu vực hiển thị khung camera quét ẩn/hiện -->
+<div id="qr-reader-container" style="display: none; margin-top: 10px; position: relative;">
+    <div id="qr-reader" style="width: 100%;"></div>
+    <button type="button" onclick="stopQRScanner()" style="margin-top: 5px; padding: 6px; background: #dc2626; font-size: 12px;">Đóng Camera</button>
+</div>
             <div class="form-group">
                 <label>Tên Khách Hàng:</label>
                 <input type="text" id="qr_name" placeholder="VD: NGUYEN VAN A" oninput="this.value = this.value.toUpperCase()">
@@ -2020,6 +2033,48 @@
             syncAll();
             syncPage7();
         });
+let html5QrCode = null;
+
+function startQRScanner() {
+    const readerContainer = document.getElementById('qr-reader-container');
+    readerContainer.style.display = 'block';
+    
+    if (!html5QrCode) {
+        html5QrCode = new Html5Qrcode("qr-reader");
+    }
+    
+    html5QrCode.start(
+        { facingMode: "environment" }, // Dùng camera sau của điện thoại
+        {
+            fps: 10,
+            qrbox: { width: 250, height: 150 }
+        },
+        (decodedText, decodedResult) => {
+            // Khi quét thành công mã QR
+            document.getElementById('qr_contract').value = decodedText.trim();
+            // Đồng thời kích hoạt luôn hàm sinh QR nếu cần
+            stopQRScanner();
+        },
+        (errorMessage) => {
+            // Bỏ qua lỗi quét liên tục khi đang tìm khung hình
+        }
+    ).catch((err) => {
+        alert("Không thể mở camera. Vui lòng cấp quyền camera cho trình duyệt!");
+        readerContainer.style.display = 'none';
+    });
+}
+
+function stopQRScanner() {
+    if (html5QrCode) {
+        html5QrCode.stop().then(() => {
+            document.getElementById('qr-reader-container').style.display = 'none';
+        }).catch(err => {
+            document.getElementById('qr-reader-container').style.display = 'none';
+        });
+    } else {
+        document.getElementById('qr-reader-container').style.display = 'none';
+    }
+}
     </script>
 </body>
 </html>
