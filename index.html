@@ -17,7 +17,7 @@
             font-family: Arial, Helvetica, sans-serif; 
         }
 
-        /* GIAO DIỆN KHUNG ĐĂNG NHẬP CHUYÊN NGHIỆP */
+        /* GIAO DIỆN KHUNG ĐĂNG NHẬP / KÍCH HOẠT KEY */
         #login-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -33,10 +33,10 @@
             padding: 30px 40px;
             border-radius: 12px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            width: 380px;
+            width: 400px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
         .login-box h3 {
             text-align: center;
@@ -48,10 +48,10 @@
         .login-group {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
         }
         .login-group label {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             color: #475569;
         }
@@ -66,7 +66,7 @@
             border-color: #2563eb;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
         }
-        .btn-login {
+        .btn-action {
             background: #2563eb;
             color: white;
             border: none;
@@ -75,17 +75,18 @@
             font-size: 15px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 6px;
             transition: background 0.2s;
         }
-        .btn-login:hover {
-            background: #1d4ed8;
-        }
+        .btn-action:hover { background: #1d4ed8; }
+        .btn-activate { background: #16a34a; }
+        .btn-activate:hover { background: #15803d; }
         #login-error {
             color: #dc2626;
-            font-size: 12px;
+            font-size: 13px;
             text-align: center;
             min-height: 16px;
+            line-height: 1.4;
         }
         
         /* CỘT NHẬP LIỆU BÊN TRÁI */
@@ -113,21 +114,25 @@
         
         .note-quangdu {
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 24px; 
+            font-size: 18px; 
             font-weight: bold;
             color: #000000;
             text-transform: uppercase;
             line-height: 1.4;
-            margin-bottom: 8px;
-            padding: 30px 16px; 
-            min-height: 160px; 
+            padding: 16px; 
             background: #fef2f2;
-            border-left: 8px solid #dc2626; 
+            border-left: 6px solid #dc2626; 
             border-radius: 6px;
-            box-shadow: inset 0 1px 3px rgba(220, 38, 38, 0.15);
-            display: flex;
-            align-items: center; 
         }
+
+        .user-info-badge { background: #eff6ff; border: 1px solid #bfdbfe; padding: 12px; border-radius: 6px; font-size: 13px; color: #1e3a8a; display: flex; flex-direction: column; gap: 4px; }
+        .user-info-badge div { display: flex; justify-content: space-between; }
+        .key-status-badge { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 12px; border-radius: 6px; font-size: 13px; color: #334155; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+        .key-input-box { background: #f8fafc; border: 1px dashed #94a3b8; padding: 14px; border-radius: 8px; display: flex; flex-direction: column; gap: 8px; }
+        .key-input-box label { font-size: 12px; font-weight: bold; color: #334155; text-transform: uppercase; }
+        .key-input-box input { padding: 9px 11px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; outline: none; }
+        .btn-logout { background: #dc2626; color: white; border: none; padding: 10px; border-radius: 6px; font-size: 13px; font-weight: bold; cursor: pointer; margin-top: auto; }
+        .btn-logout:hover { background: #b91c1c; }
 
         .section-tag { 
             background: #f8fafc; 
@@ -143,7 +148,7 @@
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
         .form-group { display: flex; flex-direction: column; gap: 3px; }
         .form-group label { font-size: 12px; font-weight: bold; color: #334155; }
-        .form-group input, .form-group select {
+        .form-group input, .form-group select, .form-group textarea {
             padding: 8px 10px;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
@@ -153,7 +158,7 @@
             background: #fdfdfd;
             transition: all 0.2s;
         }
-        .form-group input:focus, .form-group select:focus { 
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { 
             border-color: #2563eb; 
             background: #fff;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); 
@@ -222,7 +227,7 @@
             background: white;
             width: 210mm;
             min-height: 297mm;
-            padding: 12mm 15mm 12mm 18mm;
+            padding: 12mm 10mm;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             font-family: 'Times New Roman', Times, serif; 
             color: #000;
@@ -403,11 +408,66 @@
         .contract-section { font-weight: bold; text-transform: uppercase; margin-top: 14px; margin-bottom: 6px; font-size: 13pt; color: #000; }
         .contract-page p { margin-bottom: 6px; text-align: justify; font-size: 12pt; line-height: 1.4; }
 
+        /* CSS RIÊNG CHO TRANG 7 (1/2 TRANG A4 - ÉP TOÀN BỘ CHỮ IN ĐẬM VÀ MÀU ĐEN) */
+        .vandon-table, .vandon-table * {
+            font-weight: bold !important;
+            color: black !important;
+        }
+
+        .vandon-half-page {
+            width: 100%;
+            height: 132mm;
+            padding: 5mm 0mm;
+            border: 1px dashed #666;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #fff;
+            margin-bottom: 5mm;
+        }
+        .vandon-table {
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        .vandon-table th, .vandon-table td {
+            border: 2px solid #000;
+            padding: 8px 12px;
+            vertical-align: middle;
+        }
+        .vd-header-cell {
+            background-color: #d9d9d9;
+            text-align: center;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .vd-label-cell {
+            width: 13%;
+            text-align: center;
+        }
+        .vd-val-cell {
+            text-align: left;
+            padding-left: 12px;
+            font-size: 14.5px;
+        }
+        .vd-ebill-cell {
+            text-align: center;
+            font-size: 15.5px;
+            width: 25%;
+        }
+        .vd-note-cell {
+            text-align: center;
+            font-size: 14px;
+            width: 25%;
+        }
+
         @media print {
             body { background: white; height: auto; overflow: visible; display: block; }
             .sidebar, .tab-bar, #login-overlay { display: none !important; }
             .main-area, .preview-container { padding: 0; display: block; overflow: visible; background: white; }
-            .paper.active { box-shadow: none; width: 210mm; height: 297mm; padding: 12mm 15mm 12mm 18mm; display: block !important; page-break-after: always; break-after: page; }
+            .paper.active { box-shadow: none; width: 210mm; height: 297mm; padding: 10mm 15mm; display: block !important; page-break-after: always; break-after: page; }
             #tab-2 .contract-page, #tab-5 .contract-page { padding: 20mm 20mm 20mm 25mm; height: 297mm; }
             @page { size: A4 portrait; margin: 0; }
         }
@@ -415,138 +475,256 @@
 </head>
 <body>
 
-    <!-- MÀN HÌNH ĐĂNG NHẬP CHUYÊN NGHIỆP -->
-    <div id="login-overlay">
+    <!-- MÀN HÌNH ĐĂNG NHẬP / KÍCH HOẠT KEY -->
+    <div id="login-overlay" style="display: none;">
         <div class="login-box">
-            <h3>Đăng nhập hệ thống</h3>
-            <div class="login-group">
-                <label>Tên đăng nhập</label>
-                <input type="text" id="login-user" placeholder="Nhập tên đăng nhập...">
+            <h3 id="form-title">Đăng nhập hệ thống</h3>
+            
+            <div id="login-fields">
+                <div class="login-group">
+                    <label>Tên đăng nhập</label>
+                    <input type="text" id="login-user" placeholder="Nhập tên đăng nhập...">
+                </div>
+                <div class="login-group" style="margin-top: 8px;">
+                    <label>Mật khẩu</label>
+                    <input type="password" id="login-pass" placeholder="Nhập mật khẩu...">
+                </div>
             </div>
-            <div class="login-group">
-                <label>Mật khẩu</label>
-                <input type="password" id="login-pass" placeholder="Nhập mật khẩu...">
+
+            <div id="key-activate-fields" style="display: none; margin-top: 5px;">
+                <div class="login-group">
+                    <label style="color: #dc2626;">Nhập Mã Key Bản Quyền Mới</label>
+                    <input type="text" id="activate-key-input" placeholder="Nhập mã Key gia hạn tại đây...">
+                </div>
             </div>
+
             <div id="login-error"></div>
-            <button class="btn-login" onclick="handleLogin()">Đăng nhập</button>
+
+            <button class="btn-action" id="btn-submit-login" onclick="handleLogin()">Đăng nhập</button>
+            <button class="btn-action btn-activate" id="btn-submit-key" onclick="handleActivateKeyOverlay()" style="display: none;">Kích Hoạt Key</button>
         </div>
     </div>
 
     <!-- CỘT NHẬP LIỆU BÊN TRÁI -->
     <div class="sidebar">
-        <div class="note-quangdu">Chi phí duy trì phần mềm là 4 bộ trả góp HD SaiSon mỗi tháng. liên hệ Quang Dự – HD SAISON ❤️
+        <div class="note-quangdu">
+            HỆ THỐNG BẢN QUYỀN<br>
+            <span style="font-size: 13px; color: #555; text-transform: none;">Liên hệ Quang Dự: 0988.057.750</span>
+        </div>
 
-📞 0988.057.750</div>
+        <div class="user-info-badge">
+            <div><span>Tài khoản:</span> <b id="display-user-name">Chưa đăng nhập</b></div>
+        </div>
+
+        <div class="key-status-badge">
+            <span>Trạng thái bản quyền:</span>
+            <b id="key-expiry-display" style="color: #2563eb;">Đang kiểm tra...</b>
+        </div>
+
+        <div class="key-input-box">
+            <label>Nạp / Gia Hạn Key Trực Tiếp</label>
+            <input type="text" id="sidebar-key-input" placeholder="Nhập mã Key mới...">
+            <button class="btn-action btn-activate" onclick="handleSidebarKeyUpdate()" style="padding: 8px; font-size: 13px;">Kích Hoạt Key</button>
+            <button class="btn-action" onclick="manualSyncData()" style="background: #475569; padding: 8px; font-size: 12px; margin-top: 4px;">🔄 Đồng Bộ Lại Ngay</button>
+        </div>
+
+        <button class="btn-logout" onclick="handleLogout()">Đăng xuất / Đổi tài khoản</button>
         
-        <h2>NHẬP THÔNG TIN CHUNG</h2>
+        <!-- KHUNG NHẬP LIỆU DÀNH CHO TRANG 1 ĐẾN 6 -->
+        <div id="sidebar-form-default" style="margin-top: 10px;">
+            <h2>NHẬP THÔNG TIN CHUNG</h2>
 
-        <div class="section-tag">1. Cửa hàng & Số Hóa Đơn</div>
-        <div class="form-group">
-            <label>Chọn Chi nhánh Cửa hàng</label>
-            <select id="in_chinhanh" onchange="autoFillBranch()">
-                <option value="VF8">VINFAST QUANG VINH 8 (127 đường 14/10)</option>
-                <option value="QV1">QUANG VINH 1 (Cách ngã 3 Trái Diêm 100m)</option>
-                <option value="QV2">QUANG VINH 2 (Cách ngã 3 Trái Diêm 300m)</option>
-                <option value="QV5">QUANG VINH 5 (Vĩnh Trà, Hưng Phú)</option>
-            </select>
-        </div>
-        <div class="grid-2">
+            <div class="section-tag">1. Cửa hàng & Số Hóa Đơn</div>
             <div class="form-group">
-                <label>Số HĐ / Số Phiếu</label>
-                <input type="text" id="in_sohd" value="1042" oninput="syncAll()">
+                <label>Chọn Chi nhánh Cửa hàng</label>
+                <select id="in_chinhanh" onchange="autoFillBranch()">
+                    <option value="VF8">VINFAST QUANG VINH 8 (127 đường 14/10)</option>
+                    <option value="QV1">QUANG VINH 1 (Cách ngã 3 Trái Diêm 100m)</option>
+                    <option value="QV2">QUANG VINH 2 (Cách ngã 3 Trái Diêm 300m)</option>
+                    <option value="QV5">QUANG VINH 5 (Vĩnh Trà, Hưng Phú)</option>
+                </select>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Số HĐ / Số Phiếu</label>
+                    <input type="text" id="in_sohd" value="1042" oninput="syncAll()">
+                </div>
+                <div class="form-group">
+                    <label>Ngày lập (DD/MM/YYYY)</label>
+                    <input type="text" id="in_ngay" value="" oninput="syncAll()">
+                </div>
+            </div>
+
+            <div class="section-tag">2. Thông tin Khách hàng</div>
+            <div class="form-group">
+                <label>Họ và tên khách hàng (Tự động in hoa)</label>
+                <input type="text" id="in_hoten" value="NGUYỄN THỊ CÚC" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="text" id="in_sdt" value="0387144897" oninput="syncAll()">
+                </div>
+                <div class="form-group">
+                    <label>Ngày sinh KH</label>
+                    <input type="text" id="in_ngaysinh" value="6/5/1980" oninput="syncAll()">
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Số CCCD</label>
+                    <input type="text" id="in_cccd" value="034180005242" oninput="syncAll()">
+                </div>
+                <div class="form-group">
+                    <label>Ngày cấp CCCD</label>
+                    <input type="text" id="in_ngaycap" value="27/6/2021" oninput="syncAll()">
+                </div>
             </div>
             <div class="form-group">
-                <label>Ngày lập (DD/MM/YYYY)</label>
-                <input type="text" id="in_ngay" value="" oninput="syncAll()">
+                <label>Nơi cấp CCCD</label>
+                <input type="text" id="in_noicap" value="BỘ CÔNG AN" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
+            </div>
+            <div class="form-group">
+                <label>Địa chỉ khách hàng</label>
+                <input type="text" id="in_diachi" value="XÃ TIỀN HẢI ,TỈNH HƯNG YÊN" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
+            </div>
+
+            <div class="section-tag">3. Thông tin Xe & Giao dịch</div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Loại xe</label>
+                    <input type="text" id="in_loaixe" value="EVO GRAND LITE" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
+                </div>
+                <div class="form-group">
+                    <label>Nhãn hiệu / Hãng</label>
+                    <input type="text" id="in_nhanhieu" value="Vinfast" oninput="syncAll()">
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Màu sắc</label>
+                    <input type="text" id="in_mausac" value="TRẮNG" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
+                </div>
+                <div class="form-group">
+                    <label>PIN (kèm xe)</label>
+                    <input type="text" id="in_pin" value="Kèm theo xe" oninput="syncAll()">
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Số khung (SK)</label>
+                    <input type="text" id="in_sk" value="702436" oninput="syncAll()">
+                </div>
+                <div class="form-group">
+                    <label>Số máy (SM)</label>
+                    <input type="text" id="in_sm" value="250212" oninput="syncAll()">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Số seri sạc</label>
+                <input type="text" id="in_serisac" value="DRT00011629GB0003001260811D06705" oninput="syncAll()">
+            </div>
+
+            <div class="section-tag">4. Thanh toán & Ghi chú</div>
+            <div class="form-group">
+                <label>Tổng tiền phải thanh toán</label>
+                <input type="text" id="in_tongtien" value="15.600.000 VNĐ" oninput="syncAll()">
+            </div>
+            <div class="form-group">
+                <label>Số tiền đã thanh toán / Số tiền thu</label>
+                <input type="text" id="in_dathanhtoan" value="15.600.000 VNĐ (NGUYÊN XE+DKY+THẢM)" oninput="syncAll()">
+            </div>
+            <div class="form-group">
+                <label>Số tiền KH còn nợ lại</label>
+                <input type="text" id="in_conno" value="0 VNĐ" oninput="syncAll()">
+            </div>
+            <div class="form-group">
+                <label>Lý do thu / Ghi chú đặc biệt</label>
+                <input type="text" id="in_ghichu" value="NỢ HÓA ĐƠN + ĐĂNG KIỂM" oninput="syncAll()">
             </div>
         </div>
 
-        <div class="section-tag">2. Thông tin Khách hàng</div>
-        <div class="form-group">
-            <label>Họ và tên khách hàng (Tự động in hoa)</label>
-            <input type="text" id="in_hoten" value="NGUYỄN THỊ CÚC" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
-        </div>
-        <div class="grid-2">
+        <!-- KHUNG NHẬP LIỆU RIÊNG DÀNH CHO TRANG 7 (IN MÃ VẬN ĐƠN 1/2 A4) -->
+        <div id="sidebar-form-page7" style="display: none; margin-top: 10px;">
+            <h2>NHẬP THÔNG TIN TRANG 7 (VẬN ĐƠN)</h2>
+
+            <div class="section-tag">1. Thông tin Người Gửi</div>
             <div class="form-group">
-                <label>Số điện thoại</label>
-                <input type="text" id="in_sdt" value="0387144897" oninput="syncAll()">
+                <label>Họ tên Người Gửi</label>
+                <input type="text" id="vd_nguoigui_ten" value="Nguyễn Quang Dự" oninput="syncPage7()">
             </div>
             <div class="form-group">
-                <label>Ngày sinh KH</label>
-                <input type="text" id="in_ngaysinh" value="6/5/1980" oninput="syncAll()">
-            </div>
-        </div>
-        <div class="grid-2">
-            <div class="form-group">
-                <label>Số CCCD</label>
-                <input type="text" id="in_cccd" value="034180005242" oninput="syncAll()">
+                <label>Địa chỉ Người Gửi</label>
+                <input type="text" id="vd_nguoigui_diachi" value="Nhà Ông Vinh, Tổ Dân Phố Số 5, Xã Tiền Hải, Hưng Yên" oninput="syncPage7()">
             </div>
             <div class="form-group">
-                <label>Ngày cấp CCCD</label>
-                <input type="text" id="in_ngaycap" value="27/6/2021" oninput="syncAll()">
+                <label>SĐT Người Gửi</label>
+                <input type="text" id="vd_nguoigui_sdt" value="0988.057.750 - 0868.268.862" oninput="syncPage7()">
             </div>
-        </div>
-        <div class="form-group">
-            <label>Nơi cấp CCCD</label>
-            <input type="text" id="in_noicap" value="BỘ CÔNG AN" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
-        </div>
-        <div class="form-group">
-            <label>Địa chỉ khách hàng</label>
-            <input type="text" id="in_diachi" value="XÃ TIỀN HẢI ,TỈNH HƯNG YÊN" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
+
+            <div class="section-tag">2. Thông tin Người Nhận</div>
+            <div class="form-group">
+                <label>Họ tên Người Nhận</label>
+                <input type="text" id="vd_nguoinhan_ten" value="Phòng BO" oninput="syncPage7()">
+            </div>
+            <div class="form-group">
+                <label>Địa chỉ Người Nhận</label>
+                <input type="text" id="vd_nguoinhan_diachi" value="Tầng 3_Tòa nhà VIT_519 Kim Mã, Phường Giảng Võ, Hà Nội" oninput="syncPage7()">
+            </div>
+            <div class="form-group">
+                <label>SĐT Người Nhận</label>
+                <input type="text" id="vd_nguoinhan_sdt" value="1900558854" oninput="syncPage7()">
+            </div>
+
+            <div class="section-tag">3. Mã EBILL & Note</div>
+            <div class="form-group">
+                <label>Mã EBILL</label>
+                <input type="text" id="vd_ebill" value="ES683901704VN" oninput="syncPage7()">
+            </div>
+            <div class="form-group">
+                <label>Nội dung Note</label>
+                <input type="text" id="vd_note" value="PHỤ LỤC HỢP ĐỒNG TÍN DỤNG" oninput="syncPage7()">
+            </div>
         </div>
 
-        <div class="section-tag">3. Thông tin Xe & Giao dịch</div>
-        <div class="grid-2">
-            <div class="form-group">
-                <label>Loại xe</label>
-                <input type="text" id="in_loaixe" value="EVO GRAND LITE" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
-            </div>
-            <div class="form-group">
-                <label>Nhãn hiệu / Hãng</label>
-                <input type="text" id="in_nhanhieu" value="Vinfast" oninput="syncAll()">
-            </div>
-        </div>
-        <div class="grid-2">
-            <div class="form-group">
-                <label>Màu sắc</label>
-                <input type="text" id="in_mausac" value="TRẮNG" style="text-transform: uppercase;" oninput="this.value = this.value.toUpperCase(); syncAll()">
-            </div>
-            <div class="form-group">
-                <label>PIN (kèm xe)</label>
-                <input type="text" id="in_pin" value="Kèm theo xe" oninput="syncAll()">
-            </div>
-        </div>
-        <div class="grid-2">
-            <div class="form-group">
-                <label>Số khung (SK)</label>
-                <input type="text" id="in_sk" value="702436" oninput="syncAll()">
-            </div>
-            <div class="form-group">
-                <label>Số máy (SM)</label>
-                <input type="text" id="in_sm" value="250212" oninput="syncAll()">
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Số seri sạc</label>
-            <input type="text" id="in_serisac" value="DRT00011629GB0003001260811D06705" oninput="syncAll()">
-        </div>
+        <!-- KHUNG NHẬP LIỆU RIÊNG DÀNH CHO TRANG 8 (QR HD SAISON) -->
+        <div id="sidebar-form-page8" style="display: none; margin-top: 10px;">
+            <h2>NHẬP THÔNG TIN TRANG 8 (QR HD SAISON)</h2>
 
-        <div class="section-tag">4. Thanh toán & Ghi chú</div>
-        <div class="form-group">
-            <label>Tổng tiền phải thanh toán</label>
-            <input type="text" id="in_tongtien" value="15.600.000 VNĐ" oninput="syncAll()">
-        </div>
-        <div class="form-group">
-            <label>Số tiền đã thanh toán / Số tiền thu</label>
-            <input type="text" id="in_dathanhtoan" value="15.600.000 VNĐ (NGUYÊN XE+ĐKY+THẢM)" oninput="syncAll()">
-        </div>
-        <div class="form-group">
-            <label>Số tiền KH còn nợ lại</label>
-            <input type="text" id="in_conno" value="0 VNĐ" oninput="syncAll()">
-        </div>
-        <div class="form-group">
-            <label>Lý do thu / Ghi chú đặc biệt</label>
-            <input type="text" id="in_ghichu" value="NỢ HÓA ĐƠN + ĐĂNG KIỂM" oninput="syncAll()">
+            <div class="section-tag">Thông tin thanh toán QR</div>
+            <div class="form-group">
+                <label>Số tiền QR (VND):</label>
+                <input type="number" id="qr_amount" placeholder="Để trống nếu khách tự nhập">
+                <div style="font-size:11px; color:#666; font-style:italic;">Nhập số tiền hoặc để trống, khách tự nhập khi quét mã</div>
+            </div>
+            <div class="form-group">
+                <label>Số tiền trả hàng tháng (Gốc + Lãi chuẩn):</label>
+                <input type="number" id="qr_monthlyAmount" placeholder="VD: 1500000">
+                <div style="font-size:11px; color:#666; font-style:italic;">Số tiền thanh toán hàng tháng chưa phát sinh phí phạt</div>
+            </div>
+            <div class="form-group">
+                <label>Số Hợp Đồng / Số Thẻ:</label>
+                <input type="text" id="qr_contract" placeholder="VD: DL038007989">
+            </div>
+            <div class="form-group">
+                <label>Tên Khách Hàng:</label>
+                <input type="text" id="qr_name" placeholder="VD: NGUYEN VAN A" oninput="this.value = this.value.toUpperCase()">
+            </div>
+            <div class="form-group">
+                <label>Ngày ký hợp đồng:</label>
+                <input type="date" id="qr_contractDate">
+            </div>
+            <div class="form-group">
+                <label>Ngày thanh toán đầu tiên:</label>
+                <input type="date" id="qr_firstPaymentDate">
+                <div style="font-size:11px; color:#666; font-style:italic;">Chọn ngày dự kiến thanh toán kỳ đầu (có thể bỏ trống)</div>
+            </div>
+            <div class="form-group">
+                <label>Ngày thanh toán cuối cùng:</label>
+                <input type="date" id="qr_lastPaymentDate">
+                <div style="font-size:11px; color:#666; font-style:italic;">Chọn ngày kết thúc hợp đồng (có thể bỏ trống)</div>
+            </div>
+            <button onclick="generateQR()" style="width: 100%; padding: 12px; background-color: #d32f2f; color: white; border: none; margin-top: 15px; border-radius: 6px; font-size: 15px; font-weight: bold; cursor: pointer;">TẠO MÃ QR</button>
         </div>
     </div>
 
@@ -560,6 +738,8 @@
                 <button class="tab-btn" onclick="switchTab(4, this)">4. Biên Nhận CH5</button>
                 <button class="tab-btn" onclick="switchTab(5, this)">5. Thỏa Thuận Mất Xe CH5</button>
                 <button class="tab-btn" onclick="switchTab(6, this)">6. Biên Bản Bàn Giao Xe CH5</button>
+                <button class="tab-btn" onclick="switchTab(7, this)">7. In Mã Vận Đơn (1/2 A4)</button>
+                <button class="tab-btn" onclick="switchTab(8, this)">8. QR HD Saison</button>
             </div>
             <button class="btn-print-top" onclick="window.print()">🖨️ IN MẪU ĐANG CHỌN</button>
         </div>
@@ -624,7 +804,7 @@
                     <p style="font-weight: bold; font-size: 12px; margin: 2px 0 0 0;">ĐT TƯ VẤN LẤY BIỂN SỐ - ĐĂNG KÝ XE : 0904.388.299 ( gọi giờ hành chính)</p>
                 </div>
 
-                <div class="store-list-box">
+                <div class="store-list-box" style="font-size: 11px; margin-top: 10px; line-height: 1.3;">
                     <h4>HỆ THỐNG CÁC CỬA HÀNG VINFAST THUỘC HỆ THỐNG CTY QUANG VINH</h4>
                     <p><b>VINFAST QUANG VINH 1:</b> Số 136 đường 14/10, TT Tiền Hải, Thái Bình - SĐT: 0904.947.926</p>
                     <p><b>VINFAST QUANG VINH 2:</b> Số 15 Đường Trần Nhân Tông, Quận Kiến An, TP Hải Phòng - SĐT: 0921.116.288</p>
@@ -966,9 +1146,9 @@
                         <span style="width: 150px;">: 1.650.000 đ</span>
                     </div>
                     <div style="padding-left: 30px; margin-top: 6px; font-weight: bold;">
-                        <p>* Hỗ trợ khách hàng   :  Cháy xe mất xe</p>
-                        <p>* Hỗ trợ khách hàng   :  Đổi xe cũ lấy xe mới</p>
-                        <p>* Hỗ trợ khách hàng   :  Mua xe trả góp</p>
+                        <p>* Hỗ trợ khách hàng   :   Cháy xe mất xe</p>
+                        <p>* Hỗ trợ khách hàng   :   Đổi xe cũ lấy xe mới</p>
+                        <p>* Hỗ trợ khách hàng   :   Mua xe trả góp</p>
                     </div>
                 </div>
 
@@ -979,8 +1159,8 @@
                         <p>QUANG VINH 2: YAMAHA.......................Đ/C :TTTH -TB Cách ngã 3 trái diêm 300m  ĐT : 0973.393.229</p>
                         <p>QUANG VINH 3: xe 50cc SYM.KYMCO.....Đ/C:TTTH -TB  Cách ngã 3 trái diêm 300m  ĐT : 0973.393.229</p>
                         <p>QUANG VINH 4: SUZUKI .........................Đ/C: TTTH -TB Cách ngã 3 trái diêm 100m   ĐT : 0973.393.229</p>
-                        <p>QUANG VINH 5 : HONDA.YAMAHA SYM.Đ/C Thôn Vĩnh Trà Nam Trung TH-TB                ĐT : 0973.393.229</p>
-                        <p>QUANG VINH 6: XE ĐIỆN  .YAMAHA.         Đ/C : TTTH-TB Cách ngã 3 trái diêm 300m  ĐT : 0973.393.229</p>
+                        <p>QUANG VINH 5 : HONDA.YAMAHA SYM.Đ/C Thôn Vĩnh Trà Nam Trung TH-TB                 ĐT : 0973.393.229</p>
+                        <p>QUANG VINH 6: XE ĐIỆN  .YAMAHA.        Đ/C : TTTH-TB Cách ngã 3 trái diêm 300m  ĐT : 0973.393.229</p>
                     </div>
                     
                     <p style="text-align: center; font-weight: bold; margin-top: 12px; font-size: 14px;">TƯ VẤN :Bán buôn  bán lẻ BÁO GIÁ : PHỤ TÙNG dịch vụ ĐT : 0973.393.229: CỨU HỘ : 0973.393.229</p>
@@ -1258,134 +1438,396 @@
                 <div class="sign-space" style="height: 50px;"></div>
             </div>
 
+            <!-- ================= MẪU 7: IN MÃ VẬN ĐƠN (1/2 TRANG A4) ================= -->
+            <div id="tab-7" class="paper">
+                <!-- Nửa trên A4 -->
+                <div class="vandon-half-page">
+                    <table class="vandon-table">
+                        <tr>
+                            <td colspan="2" class="vd-header-cell">1. NGƯỜI GỬI</td>
+                            <td class="vd-header-cell">EBILL</td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">Họ tên:</td>
+                            <td class="vd-val-cell"><b id="out_vd_nguoigui_ten">Nguyễn Quang Dự</b></td>
+                            <td rowspan="3" class="vd-ebill-cell">
+                                <span id="out_vd_ebill">ES683901704VN</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">Địa chỉ:</td>
+                            <td class="vd-val-cell"><span id="out_vd_nguoigui_diachi">Nhà Ông Vinh, Tổ Dân Phố Số 5, Xã Tiền Hải, Hưng Yên</span></td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">SĐT:</td>
+                            <td class="vd-val-cell"><span id="out_vd_nguoigui_sdt">0988.057.750 - 0868.268.862</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="vd-header-cell">2. NGƯỜI NHẬN</td>
+                            <td class="vd-header-cell">NOTE</td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">Họ tên:</td>
+                            <td class="vd-val-cell"><b id="out_vd_nguoinhan_ten">Phòng BO</b></td>
+                            <td rowspan="3" class="vd-note-cell">
+                                <span id="out_vd_note">PHỤ LỤC HỢP ĐỒNG TÍN DỤNG</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">Địa chỉ:</td>
+                            <td class="vd-val-cell"><span id="out_vd_nguoinhan_diachi">Tầng 3_Tòa nhà VIT_519 Kim Mã, Phường Giảng Võ, Hà Nội</span></td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">SĐT:</td>
+                            <td class="vd-val-cell"><span id="out_vd_nguoinhan_sdt">1900558854</span></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- Nửa dưới A4 -->
+                <div class="vandon-half-page">
+                    <table class="vandon-table">
+                        <tr>
+                            <td colspan="2" class="vd-header-cell">1. NGƯỜI GỬI</td>
+                            <td class="vd-header-cell">EBILL</td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">Họ tên:</td>
+                            <td class="vd-val-cell"><b class="out_vd_nguoigui_ten">Nguyễn Quang Dự</b></td>
+                            <td rowspan="3" class="vd-ebill-cell">
+                                <span class="out_vd_ebill">ES683901704VN</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">Địa chỉ:</td>
+                            <td class="vd-val-cell"><span class="out_vd_nguoigui_diachi">Nhà Ông Vinh, Tổ Dân Phố Số 5, Xã Tiền Hải, Hưng Yên</span></td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">SĐT:</td>
+                            <td class="vd-val-cell"><span class="out_vd_nguoigui_sdt">0988.057.750 - 0868.268.862</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="vd-header-cell">2. NGƯỜI NHẬN</td>
+                            <td class="vd-header-cell">NOTE</td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">Họ tên:</td>
+                            <td class="vd-val-cell"><b class="out_vd_nguoinhan_ten">Phòng BO</b></td>
+                            <td rowspan="3" class="vd-note-cell">
+                                <span class="out_vd_note">PHỤ LỤC HỢP ĐỒNG TÍN DỤNG</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">Địa chỉ:</td>
+                            <td class="vd-val-cell"><span class="out_vd_nguoinhan_diachi">Tầng 3_Tòa nhà VIT_519 Kim Mã, Phường Giảng Võ, Hà Nội</span></td>
+                        </tr>
+                        <tr>
+                            <td class="vd-label-cell">SĐT:</td>
+                            <td class="vd-val-cell"><span class="out_vd_nguoinhan_sdt">1900558854</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ================= MẪU 8: QR HD SAISON ================= -->
+            <div id="tab-8" class="paper" style="padding: 20px;">
+                <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto;">
+                    <h2 style="margin: 0 0 5px 0; color: #d32f2f; text-align: center; text-transform: uppercase; font-size: 20px;">QR HD SAISON</h2>
+                    <div style="text-align: center; color: #666; font-size: 13px; margin-bottom: 20px; border-bottom: 2px solid #d32f2f; padding-bottom: 10px;">Công cụ tạo mã thanh toán nhanh</div>
+
+                    <div id="qr-result" style="text-align: center; margin-top: 20px; display: none; background: #fffdfd; padding: 15px; border-radius: 8px; border: 1px dashed #d32f2f;">
+                        <div style="font-weight: bold; margin-bottom: 5px;">
+                            Ảnh này gồm QR + thông tin khách hàng:
+                        </div>
+
+                        <img id="qrImage" alt="QR HD Saison" style="max-width: 100%; height: auto; display: block; margin: 10px auto;">
+
+                        <div style="max-width: 500px; margin: 0 auto; text-align: left;">
+                            <div class="info-line" id="infoContract" style="font-size: 14px; margin-top: 4px; text-align: left;"></div>
+                            <div class="info-line" id="infoName" style="font-size: 14px; margin-top: 4px; text-align: left;"></div>
+                            <div class="info-line" id="infoAmount" style="font-size: 14px; margin-top: 4px; text-align: left;"></div>
+                            <div class="info-line" id="infoMonthlyAmount" style="font-size: 14px; margin-top: 4px; text-align: left;"></div>
+                            <div class="info-line" id="infoFirstDate" style="font-size: 14px; margin-top: 4px; text-align: left;"></div>
+                            <div class="info-line" id="infoLastDate" style="font-size: 14px; margin-top: 4px; text-align: left;"></div>
+                            <div class="info-line diff-note" id="infoDayDiff" style="font-size: 13px; color: #d32f2f; margin-top: 8px; line-height: 1.4; background-color: #fff8f8; padding: 8px; border-radius: 6px; border-left: 3px solid #d32f2f; display: none;"></div>
+                        </div>
+
+                        <div style="font-size: 12px; color: #666; margin-top: 10px;">
+                            Muốn có cả QR + thông tin trong 1 ảnh: hãy chụp màn hình khung này 😊
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px; text-align: center; font-size: 13px; color: #555; background: #eee; padding: 10px; border-radius: 8px;">
+                        Phát triển bởi SI: <b style="color: #d32f2f;">Nguyễn Quang Dự</b><br>
+                        Anh chị dùng thấy tiện donate em bộ DL nhỏ nha ❤<br>
+                        SĐT/Zalo: <b style="color: #d32f2f;">0988057750</b>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script>
-        // Đường link CSV Google Sheets của bạn
-        const GOOGLE_SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRw818hw48spzr-agkllyMfYbWryoYBlRmImPHvanOXDqpN2h9dq--lW6rrKYH4yqrjVjIs0yMh-8S-/pub?gid=0&single=true&output=csv";
+        // Đường link Google Apps Script bản quyền mới
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzSNT99dYifCMmJ4CH7-By1IHZe7Wua8m3A1HvpHpo93OamSlxY80XVP0sYQNYNhxGw/exec";
 
-        function checkLoginSession() {
-            const SESSION_DURATION = 30 * 24 * 60 * 60 * 1000; // 30 ngày
-            let loginTime = localStorage.getItem("quangvinh_login_time");
-            let currentTime = new Date().getTime();
+        function getFreshApiUrl() {
+            return APPS_SCRIPT_URL + "?t=" + new Date().getTime();
+        }
 
-            if (loginTime && (currentTime - loginTime < SESSION_DURATION)) {
-                document.getElementById('login-overlay').style.display = 'none';
-                return;
+        function parseDateString(dateStr) {
+            if (!dateStr) return null;
+            let cleanStr = dateStr.toString().trim();
+            let dObj = new Date(cleanStr);
+            if (!isNaN(dObj.getTime())) {
+                dObj.setHours(23, 59, 59, 999);
+                return dObj;
             }
+            let parts = cleanStr.split(/[\/\-]/);
+            if (parts.length === 3) {
+                let day = parseInt(parts[0], 10);
+                let month = parseInt(parts[1], 10) - 1;
+                let year = parseInt(parts[2], 10);
+                let parsedDate = new Date(year, month, day, 23, 59, 59);
+                if (!isNaN(parsedDate.getTime())) return parsedDate;
+            }
+            return null;
+        }
+
+        async function fetchUserData(user, pass) {
+            try {
+                let response = await fetch(getFreshApiUrl());
+                let data = await response.json();
+                let users = data.users || [];
+
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i].user.toLowerCase() === user.toLowerCase() && users[i].pass === pass) {
+                        let expDateObj = parseDateString(users[i].date);
+                        let daysLeft = 0;
+                        if (expDateObj) {
+                            let today = new Date();
+                            today.setHours(0, 0, 0, 0);
+                            let diff = expDateObj.getTime() - today.getTime();
+                            daysLeft = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                        }
+                        return { 
+                            found: true, 
+                            daysLeft: daysLeft > 0 ? daysLeft : 0, 
+                            expiryDate: users[i].date 
+                        };
+                    }
+                }
+            } catch (e) {
+                console.error("Lỗi fetch:", e);
+            }
+            return { found: false, daysLeft: 0, expiryDate: "" };
+        }
+
+        async function activateKeyOnServer(user, key) {
+            try {
+                let response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify({ user: user, key: key })
+                });
+                let result = await response.json();
+                return result;
+            } catch (e) {
+                console.error("Lỗi POST:", e);
+                return { success: false, message: "Không kết nối được tới máy chủ!" };
+            }
+        }
+
+        async function checkLoginSession() {
+            let savedUser = localStorage.getItem("quangvinh_logged_user");
+            let savedPass = localStorage.getItem("quangvinh_logged_pass");
+
+            if (savedUser) {
+                document.getElementById('display-user-name').innerText = savedUser;
+
+                if (savedUser === "haiyen" && savedPass === "123456") {
+                    document.getElementById('key-expiry-display').innerHTML = `<span style="color: #2563eb;">Admin Master</span>`;
+                    document.getElementById('login-overlay').style.display = 'none';
+                    return;
+                }
+
+                let userStatus = await fetchUserData(savedUser, savedPass);
+                if (userStatus.found && userStatus.daysLeft > 0) {
+                    updateKeyBadgeDisplay(userStatus.daysLeft, userStatus.expiryDate);
+                    document.getElementById('login-overlay').style.display = 'none';
+                    return;
+                }
+            }
+            showLoginForm();
         }
 
         async function handleLogin() {
             let user = document.getElementById('login-user').value.trim();
             let pass = document.getElementById('login-pass').value.trim();
-            let keyInput = prompt("Vui lòng nhập Key kích hoạt 30 ngày của bạn:"); 
             let errDiv = document.getElementById('login-error');
 
-            // 1. Tài khoản Quản trị tối cao của bạn (vĩnh viễn)
+            if (!user || !pass) {
+                errDiv.innerText = "Vui lòng nhập Tên đăng nhập và Mật khẩu!";
+                return;
+            }
+
             if (user === "haiyen" && pass === "123456") {
-                localStorage.setItem("quangvinh_login_time", new Date().getTime());
+                localStorage.setItem("quangvinh_logged_user", user);
+                localStorage.setItem("quangvinh_logged_pass", pass);
+                document.getElementById('display-user-name').innerText = user;
+                document.getElementById('key-expiry-display').innerHTML = `<span style="color: #2563eb;">Admin Master</span>`;
                 document.getElementById('login-overlay').style.display = 'none';
                 return;
             }
 
-            if (!user || !pass) {
-                errDiv.innerText = "Vui lòng nhập đầy đủ Tên đăng nhập và Mật khẩu!";
+            errDiv.innerText = "Đang kiểm tra tài khoản...";
+            let userStatus = await fetchUserData(user, pass);
+
+            if (!userStatus.found) {
+                errDiv.innerText = "Sai tên đăng nhập hoặc mật khẩu!";
                 return;
             }
 
-            if (!keyInput) {
-                errDiv.innerText = "Vui lòng nhập Key kích hoạt!";
-                return;
-            }
+            localStorage.setItem("quangvinh_logged_user", user);
+            localStorage.setItem("quangvinh_logged_pass", pass);
+            document.getElementById('display-user-name').innerText = user;
 
-            try {
-                // 2. Gọi dữ liệu trực tiếp từ Google Sheets của bạn
-                let response = await fetch(GOOGLE_SHEET_CSV_URL);
-                let data = await response.text();
-                
-                let rows = data.split("\n");
-                let isValidUser = false;
-                let isValidKey = false;
-                let isExpired = true;
-
-                for (let i = 1; i < rows.length; i++) {
-                    let cols = rows[i].split(",");
-                    // Cấu trúc 4 cột theo Google Sheets:
-                    // Cột A (index 0): User
-                    // Cột B (index 1): Pass
-                    // Cột C (index 2): Ngày Hết Hạn (DD/MM/YYYY hoặc YYYY-MM-DD)
-                    // Cột D (index 3): Key
-                    if (cols.length >= 4) {
-                        let sheetUser = cols[0].trim();
-                        let sheetPass = cols[1].trim();
-                        let rawDate = cols[2].trim(); 
-                        let sheetKey = cols[3].trim();
-
-                        // Kiểm tra User và Mật khẩu có khớp không
-                        if (sheetUser === user && sheetPass === pass) {
-                            isValidUser = true;
-
-                            // Kiểm tra tiếp Key kích hoạt có đúng không
-                            if (sheetKey === keyInput) {
-                                isValidKey = true;
-                                
-                                let formattedDate = rawDate;
-                                if (rawDate.includes("/")) {
-                                    let parts = rawDate.split("/");
-                                    if (parts.length === 3) {
-                                        formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
-                                    }
-                                }
-
-                                let expireTime = new Date(formattedDate + "T23:59:59").getTime();
-                                let currentTime = new Date().getTime();
-
-                                if (!isNaN(expireTime) && currentTime <= expireTime) {
-                                    isExpired = false;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                }
-
-                if (!isValidUser) {
-                    errDiv.innerText = "Sai tên đăng nhập hoặc mật khẩu!";
-                } else if (!isValidKey) {
-                    errDiv.innerText = "Key kích hoạt không đúng hoặc không thuộc về tài khoản này!";
-                } else if (isExpired) {
-                    errDiv.innerText = "Key này đã hết hạn sử dụng! Vui lòng liên hệ cấp Key mới.";
-                } else {
-                    // Hợp lệ và còn hạn -> Ghi nhớ đăng nhập
-                    localStorage.setItem("quangvinh_active_key", keyInput);
-                    localStorage.setItem("quangvinh_login_time", new Date().getTime());
-                    document.getElementById('login-overlay').style.display = 'none';
-                }
-
-            } catch (error) {
-                errDiv.innerText = "Lỗi kết nối kiểm tra hệ thống! Vui lòng kiểm tra lại mạng.";
+            if (userStatus.daysLeft > 0) {
+                updateKeyBadgeDisplay(userStatus.daysLeft, userStatus.expiryDate);
+                document.getElementById('login-overlay').style.display = 'none';
+            } else {
+                showKeyActivationForm("Tài khoản của bạn đã HẾT HẠN! Nhập Key để nạp thêm ngày.");
             }
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            checkLoginSession();
-            
-            const passInput = document.getElementById('login-pass');
-            if(passInput) {
-                passInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        handleLogin();
-                    }
-                });
+        async function handleActivateKeyOverlay() {
+            let keyInput = document.getElementById('activate-key-input').value.trim();
+            let errDiv = document.getElementById('login-error');
+            let user = localStorage.getItem("quangvinh_logged_user") || document.getElementById('login-user').value.trim();
+
+            if (!keyInput) {
+                errDiv.innerText = "Vui lòng nhập mã Key!";
+                return;
             }
-        });
+
+            errDiv.innerText = "Đang kích hoạt Key trên Google Sheets...";
+            let res = await activateKeyOnServer(user, keyInput);
+
+            if (res.success) {
+                alert(`Kích hoạt thành công!\n+ Thêm ${res.addedDays} ngày bản quyền.\n+ Hạn mới đến ngày: ${res.newExpiry}`);
+                let userStatus = await fetchUserData(user, localStorage.getItem("quangvinh_logged_pass"));
+                updateKeyBadgeDisplay(userStatus.daysLeft, userStatus.expiryDate);
+                document.getElementById('login-overlay').style.display = 'none';
+            } else {
+                errDiv.innerText = res.message;
+            }
+        }
+
+        async function handleSidebarKeyUpdate() {
+            let keyInput = document.getElementById('sidebar-key-input').value.trim();
+            let currentUser = localStorage.getItem("quangvinh_logged_user");
+
+            if (!keyInput) {
+                alert("Vui lòng nhập mã Key mới!");
+                return;
+            }
+
+            let badge = document.getElementById('key-expiry-display');
+            badge.innerHTML = `<span style="color: #2563eb;">Đang xử lý kích hoạt...</span>`;
+
+            let res = await activateKeyOnServer(currentUser, keyInput);
+            if (res.success) {
+                alert(`Kích hoạt thành công!\n+ Thêm ${res.addedDays} ngày.\n+ Hạn mới: ${res.newExpiry}`);
+                document.getElementById('sidebar-key-input').value = "";
+                let userStatus = await fetchUserData(currentUser, localStorage.getItem("quangvinh_logged_pass"));
+                updateKeyBadgeDisplay(userStatus.daysLeft, userStatus.expiryDate);
+            } else {
+                alert(res.message);
+                manualSyncData();
+            }
+        }
+
+        async function manualSyncData() {
+            let currentUser = localStorage.getItem("quangvinh_logged_user");
+            let currentPass = localStorage.getItem("quangvinh_logged_pass");
+
+            if (!currentUser) return;
+
+            let badge = document.getElementById('key-expiry-display');
+            badge.innerHTML = `<span style="color: #2563eb;">Đang đồng bộ...</span>`;
+
+            let userStatus = await fetchUserData(currentUser, currentPass);
+            if (userStatus.found) {
+                updateKeyBadgeDisplay(userStatus.daysLeft, userStatus.expiryDate);
+                alert("Đồng bộ thành công!");
+            } else {
+                alert("Không tìm thấy dữ liệu tài khoản!");
+            }
+        }
+
+        function updateKeyBadgeDisplay(totalDays, latestDate) {
+            let badge = document.getElementById('key-expiry-display');
+            if (!badge) return;
+            if (totalDays > 0) {
+                badge.innerHTML = `<span style="color: #16a34a;">Còn ${totalDays} ngày (Đến ${latestDate})</span>`;
+            } else {
+                badge.innerHTML = `<span style="color: #dc2626;">Đã hết hạn</span>`;
+            }
+        }
+
+        function showLoginForm() {
+            document.getElementById('login-overlay').style.display = 'flex';
+            document.getElementById('form-title').innerText = "Đăng nhập hệ thống";
+            document.getElementById('login-fields').style.display = 'block';
+            document.getElementById('key-activate-fields').style.display = 'none';
+            document.getElementById('btn-submit-login').style.display = 'block';
+            document.getElementById('btn-submit-key').style.display = 'none';
+            document.getElementById('login-error').innerText = "";
+        }
+
+        function showKeyActivationForm(msg) {
+            document.getElementById('form-title').innerText = "Kích Hoạt Bản Quyền";
+            document.getElementById('login-fields').style.display = 'none';
+            document.getElementById('key-activate-fields').style.display = 'block';
+            document.getElementById('btn-submit-login').style.display = 'none';
+            document.getElementById('btn-submit-key').style.display = 'block';
+            document.getElementById('login-error').innerText = msg;
+        }
+
+        function handleLogout() {
+            localStorage.removeItem("quangvinh_logged_user");
+            localStorage.removeItem("quangvinh_logged_pass");
+            location.reload();
+        }
 
         function switchTab(tabIndex, btnElement) {
             document.querySelectorAll('.paper').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             document.getElementById('tab-' + tabIndex).classList.add('active');
             btnElement.classList.add('active');
+
+            const sidebarDefault = document.getElementById('sidebar-form-default');
+            const sidebarPage7 = document.getElementById('sidebar-form-page7');
+            const sidebarPage8 = document.getElementById('sidebar-form-page8');
+
+            sidebarDefault.style.display = 'none';
+            sidebarPage7.style.display = 'none';
+            sidebarPage8.style.display = 'none';
+
+            if (tabIndex === 7) {
+                sidebarPage7.style.display = 'flex';
+                sidebarPage7.style.flexDirection = 'column';
+                sidebarPage7.style.gap = '10px';
+            } else if (tabIndex === 8) {
+                sidebarPage8.style.display = 'flex';
+                sidebarPage8.style.flexDirection = 'column';
+                sidebarPage8.style.gap = '10px';
+            } else {
+                sidebarDefault.style.display = 'flex';
+                sidebarDefault.style.flexDirection = 'column';
+                sidebarDefault.style.gap = '10px';
+            }
         }
 
         function autoFillBranch() {
@@ -1438,7 +1880,123 @@
             setClassText('out_ghichu', document.getElementById('in_ghichu') ? document.getElementById('in_ghichu').value : '');
         }
 
+        function syncPage7() {
+            const guiTen = document.getElementById('vd_nguoigui_ten').value;
+            const guiDc = document.getElementById('vd_nguoigui_diachi').value;
+            const guiSdt = document.getElementById('vd_nguoigui_sdt').value;
+
+            const nhanTen = document.getElementById('vd_nguoinhan_ten').value;
+            const nhanDc = document.getElementById('vd_nguoinhan_diachi').value;
+            const nhanSdt = document.getElementById('vd_nguoinhan_sdt').value;
+
+            const ebill = document.getElementById('vd_ebill').value;
+            const note = document.getElementById('vd_note').value;
+
+            document.getElementById('out_vd_nguoigui_ten').innerText = guiTen;
+            document.getElementById('out_vd_nguoigui_diachi').innerText = guiDc;
+            document.getElementById('out_vd_nguoigui_sdt').innerText = guiSdt;
+
+            document.getElementById('out_vd_nguoinhan_ten').innerText = nhanTen;
+            document.getElementById('out_vd_nguoinhan_diachi').innerText = nhanDc;
+            document.getElementById('out_vd_nguoinhan_sdt').innerText = nhanSdt;
+
+            document.getElementById('out_vd_ebill').innerText = ebill;
+            document.getElementById('out_vd_note').innerText = note;
+
+            document.querySelectorAll('.out_vd_nguoigui_ten').forEach(el => el.innerText = guiTen);
+            document.querySelectorAll('.out_vd_nguoigui_diachi').forEach(el => el.innerText = guiDc);
+            document.querySelectorAll('.out_vd_nguoigui_sdt').forEach(el => el.innerText = guiSdt);
+
+            document.querySelectorAll('.out_vd_nguoinhan_ten').forEach(el => el.innerText = nhanTen);
+            document.querySelectorAll('.out_vd_nguoinhan_diachi').forEach(el => el.innerText = nhanDc);
+            document.querySelectorAll('.out_vd_nguoinhan_sdt').forEach(el => el.innerText = nhanSdt);
+
+            document.querySelectorAll('.out_vd_ebill').forEach(el => el.innerText = ebill);
+            document.querySelectorAll('.out_vd_note').forEach(el => el.innerText = note);
+        }
+
+        function formatDateVN(isoDate) {
+            if (!isoDate) return "";
+            var parts = isoDate.split("-");
+            if (parts.length !== 3) return isoDate;
+            return parts[2] + "/" + parts[1] + "/" + parts[0];
+        }
+
+        function generateQR() {
+            var amountInput     = (document.getElementById("qr_amount").value || "").trim();
+            var monthlyInput     = (document.getElementById("qr_monthlyAmount").value || "").trim();
+            var contract         = (document.getElementById("qr_contract").value || "").trim();
+            var name             = (document.getElementById("qr_name").value || "").trim().toUpperCase();
+            var contractISO      = (document.getElementById("qr_contractDate").value || "").trim();
+            var firstISO         = (document.getElementById("qr_firstPaymentDate").value || "").trim();
+            var lastISO          = (document.getElementById("qr_lastPaymentDate").value || "").trim();
+
+            if (!contract || !name) {
+                alert("Vui lòng nhập Số Hợp Đồng và Tên Khách Hàng!");
+                return;
+            }
+
+            var firstVN = formatDateVN(firstISO);
+            var lastVN  = formatDateVN(lastISO);
+
+            var addInfoContent = contract + " _ " + name;
+
+            var qrUrl = "https://img.vietqr.io/image/HDB-002704070014601-print.png";
+            qrUrl += "?addInfo=" + encodeURIComponent(addInfoContent);
+            qrUrl += "&accountName=" + encodeURIComponent("HD SAISON");
+
+            var amount = parseInt(amountInput, 10);
+            var amountText = "";
+            if (!isNaN(amount) && amount > 0) {
+                qrUrl += "&amount=" + amount;
+                amountText = "Số tiền QR: " + amount.toLocaleString('vi-VN') + " VND";
+            } else {
+                amountText = "Số tiền QR: (Tự nhập khi quét)";
+            }
+
+            var monthlyVal = parseInt(monthlyInput, 10);
+            var monthlyText = "";
+            if (!isNaN(monthlyVal) && monthlyVal > 0) {
+                monthlyText = "Số tiền trả góp hàng tháng : " + monthlyVal.toLocaleString('vi-VN') + " VND (chưa bao gồm phí trả chậm)";
+            }
+
+            var img = document.getElementById("qrImage");
+            img.src = qrUrl;
+
+            document.getElementById("infoContract").innerText = "Số HĐ: " + contract;
+            document.getElementById("infoName").innerText = "Khách hàng: " + name;
+            document.getElementById("infoAmount").innerText = amountText;
+            document.getElementById("infoMonthlyAmount").innerText = monthlyText;
+            document.getElementById("infoFirstDate").innerText = firstVN ? ("Ngày thanh toán đầu tiên: " + firstVN) : "";
+            document.getElementById("infoLastDate").innerText = lastVN ? ("Ngày thanh toán cuối cùng: " + lastVN) : "";
+
+            var diffDiv = document.getElementById("infoDayDiff");
+            if (contractISO && firstISO) {
+                var dateContract = new Date(contractISO);
+                var dateFirst = new Date(firstISO);
+                
+                var timeDiff = dateFirst.getTime() - dateContract.getTime();
+                var totalDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+                if (totalDays >= 0) {
+                    var diffDays = totalDays - 30;
+                    diffDiv.innerHTML = "Kỳ đầu tính từ ngày ký HĐ đến ngày đóng đầu tiên là <b>" + totalDays + "</b> ngày (chênh lệch <b>" + diffDays + "</b> ngày) theo chu kì tính lãi 30 ngày. <br><i>Tiền chênh lệch quý khách theo dõi SMS HD Saison gửi về SĐT khách hàng ký HĐ vào kỳ cuối.</i>";
+                    diffDiv.style.display = "block";
+                } else {
+                    diffDiv.style.display = "none";
+                }
+            } else {
+                diffDiv.style.display = "none";
+            }
+
+            var resultDiv = document.getElementById("qr-result");
+            resultDiv.style.display = "block";
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
+            checkLoginSession();
+
             const inputNgay = document.getElementById('in_ngay');
             if (inputNgay && !inputNgay.value) {
                 const d = new Date();
@@ -1448,6 +2006,7 @@
                 inputNgay.value = `${day}/${month}/${year}`;
             }
             syncAll();
+            syncPage7();
         });
     </script>
 </body>
