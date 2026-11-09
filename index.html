@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Quản Lý & In Biểu Mẫu Tự Động - Công Ty Quang Vinh</title>
-<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-    
-    <style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -514,7 +510,6 @@
         <div class="note-quangdu">
             HỆ THỐNG BẢN QUYỀN<br>
             <span style="font-size: 13px; color: #555; text-transform: none;">Liên hệ Quang Dự: 0988.057.750</span>
-            <div style="color: #00129A;">CHI PHÍ DUY TRÌ LÀ 4 BỘ TRẢ GÓP HD SAISON 1 THÁNG</div>
         </div>
 
         <div class="user-info-badge">
@@ -708,18 +703,9 @@
                 <div style="font-size:11px; color:#666; font-style:italic;">Số tiền thanh toán hàng tháng chưa phát sinh phí phạt</div>
             </div>
             <div class="form-group">
-    <label>Số Hợp Đồng / Số Thẻ:</label>
-    <div style="display: flex; gap: 6px;">
-        <input type="text" id="qr_contract" placeholder="VD: DL038007989" style="flex: 1; margin-top: 0;">
-        <button type="button" onclick="startQRScanner()" style="margin-top: 0; padding: 0 12px; width: auto; background: #2563eb; font-size: 13px; border-radius: 6px;">📷 Quét QR</button>
-    </div>
-</div>
-
-<!-- Khu vực hiển thị khung camera quét ẩn/hiện -->
-<div id="qr-reader-container" style="display: none; margin-top: 10px; position: relative;">
-    <div id="qr-reader" style="width: 100%;"></div>
-    <button type="button" onclick="stopQRScanner()" style="margin-top: 5px; padding: 6px; background: #dc2626; font-size: 12px;">Đóng Camera</button>
-</div>
+                <label>Số Hợp Đồng / Số Thẻ:</label>
+                <input type="text" id="qr_contract" placeholder="VD: DL038007989">
+            </div>
             <div class="form-group">
                 <label>Tên Khách Hàng:</label>
                 <input type="text" id="qr_name" placeholder="VD: NGUYEN VAN A" oninput="this.value = this.value.toUpperCase()">
@@ -746,14 +732,14 @@
     <div class="main-area">
         <div class="tab-bar">
             <div class="tab-buttons">
-                <button class="tab-btn active" onclick="switchTab(1, this)">1. Biên Nhận VF8</button>
-                <button class="tab-btn" onclick="switchTab(2, this)">2. Thỏa Thuận Mất Xe VF8</button>
-                <button class="tab-btn" onclick="switchTab(3, this)">3. Biên Bản Bàn Giao Xe VF8</button>
-                <button class="tab-btn" onclick="switchTab(4, this)">4. Biên Nhận &#128541; Thoa - Ngơ &#128541;</button>
-                <button class="tab-btn" onclick="switchTab(5, this)">5. Thỏa Thuận Mất Xe &#128541; Thoa - Ngơ &#128541;</button>
-                <button class="tab-btn" onclick="switchTab(6, this)">6. Biên Bản Bàn Giao Xe &#128541; Thoa - Ngơ &#128541;</button>
-                <button class="tab-btn" onclick="switchTab(7, this)">7.&#128386; In Mã Vận Đơn &#128234; </button>
-                <button class="tab-btn" onclick="switchTab(8, this)">8.&#128184; QR HD Saison &#128184;</button>
+                <button class="tab-btn active" onclick="switchTab(1, this)">1. HĐ Khách Đăng Ký Xe</button>
+                <button class="tab-btn" onclick="switchTab(2, this)">2. Thỏa Thuận Mất Xe</button>
+                <button class="tab-btn" onclick="switchTab(3, this)">3. Biên Bản Bàn Giao Xe</button>
+                <button class="tab-btn" onclick="switchTab(4, this)">4. Biên Nhận CH5</button>
+                <button class="tab-btn" onclick="switchTab(5, this)">5. Thỏa Thuận Mất Xe CH5</button>
+                <button class="tab-btn" onclick="switchTab(6, this)">6. Biên Bản Bàn Giao Xe CH5</button>
+                <button class="tab-btn" onclick="switchTab(7, this)">7. In Mã Vận Đơn (1/2 A4)</button>
+                <button class="tab-btn" onclick="switchTab(8, this)">8. QR HD Saison</button>
             </div>
             <button class="btn-print-top" onclick="window.print()">🖨️ IN MẪU ĐANG CHỌN</button>
         </div>
@@ -1000,7 +986,7 @@
                         <p><b>BÊN BÁN: CÔNG TY TNHH KINH DOANH DỊCH VỤ QUANG VINH</b></p>
                         <p>Địa chỉ: Số 127 đường 14/10, Tiền Hải Hưng Yên</p>
                         <p>Mã số doanh nghiệp: 1001012641 SĐT: 0929.116.288 </p>
-                        <p>Đại diện: Bùi Thị Hải Yến - Chức vụ: Kế Toán Tổng Hợp</p>
+                        <p>Đại diện: Bùi Thị Hải Yến - Chức vụ: Cửa hàng trưởng</p>
                     </div>
                     <div style="width: 48%; border-left: 1px solid #000; padding-left: 10px;">
                         <p><b>KHÁCH HÀNG: <span class="out_hoten bold" style="color: red;"></span></b></p>
@@ -1660,7 +1646,7 @@
             if (savedUser) {
                 document.getElementById('display-user-name').innerText = savedUser;
 
-                if (savedUser === "Admin" && savedPass === "999999") {
+                if (savedUser === "haiyen" && savedPass === "123456") {
                     document.getElementById('key-expiry-display').innerHTML = `<span style="color: #2563eb;">Admin Master</span>`;
                     document.getElementById('login-overlay').style.display = 'none';
                     return;
@@ -1686,7 +1672,7 @@
                 return;
             }
 
-            if (user === "Admin" && pass === "999999") {
+            if (user === "haiyen" && pass === "123456") {
                 localStorage.setItem("quangvinh_logged_user", user);
                 localStorage.setItem("quangvinh_logged_pass", pass);
                 document.getElementById('display-user-name').innerText = user;
@@ -1783,19 +1769,8 @@
         function updateKeyBadgeDisplay(totalDays, latestDate) {
             let badge = document.getElementById('key-expiry-display');
             if (!badge) return;
-
-            // Xử lý làm đẹp lại chuỗi ngày tháng từ server trả về
-            let formattedDate = latestDate;
-            let dObj = new Date(latestDate);
-            if (!isNaN(dObj.getTime())) {
-                let dDay = ("0" + dObj.getDate()).slice(-2);
-                let dMonth = ("0" + (dObj.getMonth() + 1)).slice(-2);
-                let dYear = dObj.getFullYear();
-                formattedDate = `${dDay}/${dMonth}/${dYear}`;
-            }
-
             if (totalDays > 0) {
-                badge.innerHTML = `<span style="color: #16a34a;">Còn ${totalDays} ngày (Đến ${formattedDate})</span>`;
+                badge.innerHTML = `<span style="color: #16a34a;">Còn ${totalDays} ngày (Đến ${latestDate})</span>`;
             } else {
                 badge.innerHTML = `<span style="color: #dc2626;">Đã hết hạn</span>`;
             }
@@ -2033,48 +2008,6 @@
             syncAll();
             syncPage7();
         });
-let html5QrCode = null;
-
-function startQRScanner() {
-    const readerContainer = document.getElementById('qr-reader-container');
-    readerContainer.style.display = 'block';
-    
-    if (!html5QrCode) {
-        html5QrCode = new Html5Qrcode("qr-reader");
-    }
-    
-    html5QrCode.start(
-        { facingMode: "environment" }, // Dùng camera sau của điện thoại
-        {
-            fps: 10,
-            qrbox: { width: 250, height: 150 }
-        },
-        (decodedText, decodedResult) => {
-            // Khi quét thành công mã QR
-            document.getElementById('qr_contract').value = decodedText.trim();
-            // Đồng thời kích hoạt luôn hàm sinh QR nếu cần
-            stopQRScanner();
-        },
-        (errorMessage) => {
-            // Bỏ qua lỗi quét liên tục khi đang tìm khung hình
-        }
-    ).catch((err) => {
-        alert("Không thể mở camera. Vui lòng cấp quyền camera cho trình duyệt!");
-        readerContainer.style.display = 'none';
-    });
-}
-
-function stopQRScanner() {
-    if (html5QrCode) {
-        html5QrCode.stop().then(() => {
-            document.getElementById('qr-reader-container').style.display = 'none';
-        }).catch(err => {
-            document.getElementById('qr-reader-container').style.display = 'none';
-        });
-    } else {
-        document.getElementById('qr-reader-container').style.display = 'none';
-    }
-}
     </script>
 </body>
 </html>
