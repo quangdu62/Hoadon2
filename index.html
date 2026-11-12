@@ -469,6 +469,20 @@
             .main-area, .preview-container { padding: 0; display: block; overflow: visible; background: white; }
             .paper.active { box-shadow: none; width: 210mm; height: 297mm; padding: 10mm 15mm; display: block !important; page-break-after: always; break-after: page; }
             #tab-2 .contract-page, #tab-5 .contract-page { padding: 20mm 20mm 20mm 25mm; height: 297mm; }
+
+            /* Chế độ in 2 bộ: in trọn bộ thứ nhất rồi mới đến bộ thứ hai */
+            body.print-two-copies > *:not(#print-area) { display: none !important; }
+            body.print-two-copies #print-area { display: block !important; }
+            #print-area .paper {
+                display: block !important;
+                box-shadow: none !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
+            }
+            #print-area > .paper { page-break-after: always !important; break-after: page !important; }
+            #print-area > .paper:last-child { page-break-after: auto !important; break-after: auto !important; }
+            #print-area .contract-page:last-child { page-break-after: auto !important; break-after: auto !important; }
+
             @page { size: A4 portrait; margin: 0; }
         }
     </style>
@@ -509,8 +523,9 @@
     <div class="sidebar">
         <div class="note-quangdu">
             HỆ THỐNG BẢN QUYỀN<br>
-            <span style="font-size: 13px; color: #555; text-transform: none;">Liên hệ Quang Dự: 0988.057.750</span>
-        </div>
+                <span style="font-size: 13px; color: #555; text-transform: none;">Liên hệ Quang Dự: 0988.057.750</span>
+                <div style="color: #00129A;">CHI PHÍ DUY TRÌ LÀ 4 BỘ TRẢ GÓP HD SAISON 1 THÁNG</div>
+            </div>
 
         <div class="user-info-badge">
             <div><span>Tài khoản:</span> <b id="display-user-name">Chưa đăng nhập</b></div>
@@ -735,13 +750,17 @@
                 <button class="tab-btn active" onclick="switchTab(1, this)">1. Biên Nhận (VF8)</button>
                 <button class="tab-btn" onclick="switchTab(2, this)">2. Thỏa Thuận Mất Xe (VF8)</button>
                 <button class="tab-btn" onclick="switchTab(3, this)">3. Biên Bản Bàn Giao Xe (VF8)</button>
-                <button class="tab-btn" onclick="switchTab(4, this)">4. Biên Nhận (CH5)</button>
-                <button class="tab-btn" onclick="switchTab(5, this)">5. Thỏa Thuận Mất Xe (CH5)</button>
-                <button class="tab-btn" onclick="switchTab(6, this)">6. Biên Bản Bàn Giao Xe (CH5)</button>
+                <button class="tab-btn" onclick="switchTab(4, this)">4. Biên Nhận (Thoa - Ngơ)</button>
+                <button class="tab-btn" onclick="switchTab(5, this)">5. Thỏa Thuận Mất Xe (Thoa - Ngơ)</button>
+                <button class="tab-btn" onclick="switchTab(6, this)">6. Biên Bản Bàn Giao Xe (Thoa - Ngơ)</button>
                 <button class="tab-btn" onclick="switchTab(7, this)">7. In Mã Vận Đơn </button>
                 <button class="tab-btn" onclick="switchTab(8, this)">8. QR thanh toán HD SAISON</button>
+		<button class="tab-btn" onclick="switchTab(9, this)">9. Scan 2 mặt CCCD/Cà Vẹt</button>
+		<button class="tab-btn" onclick="switchTab(10, this)">10. Quản lý đăng kí xe HD SAISON</button>
+
             </div>
-            <button class="btn-print-top" onclick="window.print()">🖨️ IN MẪU ĐANG CHỌN</button>
+            <button class="btn-print-top" onclick="printTwoCopies()">🖨️ IN trang đang chọn (1,2,3 - 1,2,3)</button>
+            <button class="btn-print-top" onclick="window.print()" >🖨️ IN trang đang chọn (1,1 - 2,2 - 3,3)</button>
         </div>
 
         <div class="preview-container">
@@ -2003,6 +2022,55 @@
             var resultDiv = document.getElementById("qr-result");
             resultDiv.style.display = "block";
             resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // In 2 bộ theo thứ tự: toàn bộ trang của bản 1, sau đó toàn bộ trang của bản 2.
+        // Áp dụng cho tất cả 8 mẫu; không thay đổi dữ liệu hay nội dung mẫu gốc.
+        async function printTwoCopies() {
+            const activePaper = document.querySelector('.paper.active');
+
+            if (!activePaper) {
+                alert("Vui lòng chọn mẫu cần in!");
+                return;
+            }
+
+            // Đồng bộ dữ liệu đang hiển thị trước khi tạo bản in.
+            if (typeof syncAll === 'function') syncAll();
+            if (typeof syncPage7 === 'function' && activePaper.id === 'tab-7') syncPage7();
+
+            const printArea = document.createElement('div');
+            printArea.id = 'print-area';
+
+            for (let copyIndex = 0; copyIndex < 2; copyIndex++) {
+                const copy = activePaper.cloneNode(true);
+                copy.classList.add('active');
+                printArea.appendChild(copy);
+            }
+
+            document.body.appendChild(printArea);
+            document.body.classList.add('print-two-copies');
+
+            // Chờ ảnh (ví dụ QR thanh toán) tải xong để cả hai bản đều in đủ.
+            const images = Array.from(printArea.querySelectorAll('img'));
+            await Promise.all(images.map(img => {
+                if (img.complete) return Promise.resolve();
+                return new Promise(resolve => {
+                    img.addEventListener('load', resolve, { once: true });
+                    img.addEventListener('error', resolve, { once: true });
+                });
+            }));
+
+            const cleanup = () => {
+                document.body.classList.remove('print-two-copies');
+                printArea.remove();
+                window.removeEventListener('afterprint', cleanup);
+            };
+
+            window.addEventListener('afterprint', cleanup, { once: true });
+            window.print();
+
+            // Dự phòng cho trình duyệt không phát sự kiện afterprint.
+            setTimeout(cleanup, 60000);
         }
 
         window.addEventListener('DOMContentLoaded', () => {
