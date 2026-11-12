@@ -1657,10 +1657,98 @@
                 return { success: false, message: "Không kết nối được tới máy chủ!" };
             }
         }
+// ==========================================
+// TỰ ĐỘNG ĐĂNG XUẤT SAU 24 GIỜ
+// ==========================================
 
-        async function checkLoginSession() {
-            let savedUser = localStorage.getItem("quangvinh_logged_user");
-            let savedPass = localStorage.getItem("quangvinh_logged_pass");
+const LOGIN_TIMEOUT = 24 * 60 * 60 * 1000; // 24 giờ
+const LOGIN_TIME_KEY = "quangvinh_login_timestamp";
+let logoutTimer = null;
+
+// Ghi nhận thời điểm đăng nhập và bắt đầu đếm ngược
+function startLoginTimer() {
+    localStorage.setItem(LOGIN_TIME_KEY, Date.now().toString());
+    scheduleAutoLogout();
+}
+
+// Đặt lịch tự đăng xuất đúng thời điểm hết 24 giờ
+function scheduleAutoLogout() {
+    if (logoutTimer) {
+        clearTimeout(logoutTimer);
+        logoutTimer = null;
+    }
+
+    const loginTime = Number(localStorage.getItem(LOGIN_TIME_KEY));
+
+    if (!loginTime || !Number.isFinite(loginTime)) {
+        return;
+    }
+
+    const remaining = LOGIN_TIMEOUT - (Date.now() - loginTime);
+
+    if (remaining <= 0) {
+        autoLogout();
+        return;
+    }
+
+    logoutTimer = setTimeout(() => {
+        checkLoginTimeout();
+    }, remaining);
+}
+
+function isLoginExpired() {
+    const loginTime = Number(localStorage.getItem(LOGIN_TIME_KEY));
+
+    if (!loginTime || !Number.isFinite(loginTime)) {
+        return true;
+    }
+
+    return Date.now() - loginTime >= LOGIN_TIMEOUT;
+}
+
+function autoLogout() {
+    // Tránh hiện thông báo nhiều lần hoặc đăng xuất khi đã đăng xuất trước đó
+    if (!localStorage.getItem("quangvinh_logged_user")) {
+        return;
+    }
+
+    alert("Phiên đăng nhập đã hết hạn sau 24 giờ. Vui lòng đăng nhập lại!");
+    handleLogout();
+}
+
+function checkLoginTimeout() {
+    if (!localStorage.getItem("quangvinh_logged_user")) {
+        return true;
+    }
+
+    if (isLoginExpired()) {
+        autoLogout();
+        return false;
+    }
+
+    // Khôi phục bộ đếm khi tải lại trang hoặc quay lại tab
+    scheduleAutoLogout();
+    return true;
+}
+
+// Kiểm tra lại khi người dùng quay lại tab/trình duyệt
+window.addEventListener("focus", checkLoginTimeout);
+
+document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+        checkLoginTimeout();
+    }
+});
+
+       async function checkLoginSession() {
+
+    // Kiểm tra phiên đăng nhập đã quá 24 giờ chưa
+    if (!checkLoginTimeout()) {
+        return;
+    }
+
+    let savedUser = localStorage.getItem("quangvinh_logged_user");
+    let savedPass = localStorage.getItem("quangvinh_logged_pass");
 
             if (savedUser) {
                 document.getElementById('display-user-name').innerText = savedUser;
@@ -1694,6 +1782,7 @@
             if (user === "haiyen" && pass === "123456") {
                 localStorage.setItem("quangvinh_logged_user", user);
                 localStorage.setItem("quangvinh_logged_pass", pass);
+                startLoginTimer();
                 document.getElementById('display-user-name').innerText = user;
                 document.getElementById('key-expiry-display').innerHTML = `<span style="color: #2563eb;">Admin Master</span>`;
                 document.getElementById('login-overlay').style.display = 'none';
@@ -1713,6 +1802,7 @@
             document.getElementById('display-user-name').innerText = user;
 
             if (userStatus.daysLeft > 0) {
+                startLoginTimer();
                 updateKeyBadgeDisplay(userStatus.daysLeft, userStatus.expiryDate);
                 document.getElementById('login-overlay').style.display = 'none';
             } else {
@@ -1736,6 +1826,7 @@
             if (res.success) {
                 alert(`Kích hoạt thành công!\n+ Thêm ${res.addedDays} ngày bản quyền.\n+ Hạn mới đến ngày: ${res.newExpiry}`);
                 let userStatus = await fetchUserData(user, localStorage.getItem("quangvinh_logged_pass"));
+                startLoginTimer();
                 updateKeyBadgeDisplay(userStatus.daysLeft, userStatus.expiryDate);
                 document.getElementById('login-overlay').style.display = 'none';
             } else {
@@ -1826,8 +1917,14 @@
         }
 
         function handleLogout() {
+            if (logoutTimer) {
+                clearTimeout(logoutTimer);
+                logoutTimer = null;
+            }
+
             localStorage.removeItem("quangvinh_logged_user");
             localStorage.removeItem("quangvinh_logged_pass");
+            localStorage.removeItem(LOGIN_TIME_KEY);
             location.reload();
         }
 
