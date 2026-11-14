@@ -482,6 +482,50 @@
             #print-area > .paper { page-break-after: always !important; break-after: page !important; }
             #print-area > .paper:last-child { page-break-after: auto !important; break-after: auto !important; }
             #print-area .contract-page:last-child { page-break-after: auto !important; break-after: auto !important; }
+/* ===== FIX IN 2 BỘ ===== */
+
+/* Mẫu nhiều trang (2 và 5): khung bọc phải cao tự động */
+#print-area #tab-2,
+#print-area #tab-5 {
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+}
+#print-area #tab-2 .contract-page,
+#print-area #tab-5 .contract-page {
+    height: 296mm !important;      /* thấp hơn 297mm một chút để không tràn trang */
+    min-height: 0 !important;
+    margin-bottom: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    page-break-after: always !important;
+    break-after: page !important;
+}
+#print-area #tab-2 .contract-page:last-child,
+#print-area #tab-5 .contract-page:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+}
+
+/* Mẫu 1 trang (1, 3, 4, 6, 7, 8): ép đúng 1 trang, không sinh trang thừa */
+#print-area > .paper:not(#tab-2):not(#tab-5) {
+    height: 296mm !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Mẫu 2/5: bản 1 kết thúc rồi mới sang bản 2 */
+#print-area > #tab-2,
+#print-area > #tab-5 {
+    page-break-after: auto !important;
+    break-after: auto !important;
+}
+#print-area > #tab-2:first-child .contract-page:last-child,
+#print-area > #tab-5:first-child .contract-page:last-child {
+    page-break-after: always !important;
+    break-after: page !important;
+}
 
             @page { size: A4 portrait; margin: 0; }
         }
