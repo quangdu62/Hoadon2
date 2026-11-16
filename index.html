@@ -322,20 +322,20 @@
 
         /* ĐỊNH DẠNG THỎA THUẬN 5 TRANG CHUẨN MẪU WORD */
         .contract-page {
-            position: relative;
-            width: 210mm;
-            min-height: 297mm;
-            padding: 20mm 20mm 20mm 25mm;
-            background: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            margin-bottom: 20mm;
-            page-break-after: always;
-            break-after: page;
-            font-family: 'Times New Roman', Times, serif;
-            color: #000;
-            font-size: 12pt;
-            line-height: 1.4;
-        }
+    position: relative;
+    width: 210mm;
+    min-height: 297mm;
+    padding: 12mm 15mm 12mm 18mm; /* Đã thu nhỏ lề để tăng không gian chứa chữ */
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 10mm;
+    page-break-after: always;
+    break-after: page;
+    font-family: 'Times New Roman', Times, serif;
+    color: #000;
+    font-size: 11pt; /* Đã giảm cỡ chữ xuống 11pt cho vừa khít */
+    line-height: 1.15; /* Giãn dòng gọn gàng */
+}
         .page-number {
             position: absolute;
             bottom: 15mm;
@@ -930,16 +930,67 @@
                     <div class="contract-section">II. &nbsp;&nbsp;&nbsp; KHÁCH HÀNG (“BÊN B”):</div>
                     <p>- Họ và Tên &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b class="out_hoten" style="color: red;"></b></p>
 
-                    <div class="page-number">1</div>
-                </div>
+                    <!-- ================= MẪU 2: THỎA THUẬN MẤT XE (ĐÃ GỌN 3 TRANG) ================= -->
+            <div id="tab-2" class="paper" style="padding: 0; background: transparent; box-shadow: none; overflow: visible;">
+                
+                <!-- TRANG 1 -->
+                <div class="contract-page active">
+                    <div class="contract-header">
+                        <div class="header-company">
+                            <p class="header-main">
+                                CÔNG TY TNHH KINH DOANH<br>
+                                DỊCH VỤ QUANG VINH
+                            </p>
+                            <p class="header-number">
+                                Số: <span class="out_sohd" style="color: red;"></span>.../2025/TT-QV
+                            </p>
+                        </div>
+                        <div class="header-national">
+                            <p class="header-main">
+                                CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+                            </p>
+                            <p class="header-slogan">
+                                Độc lập – Tự do – Hạnh phúc
+                            </p>
+                            <div class="header-line"></div>
+                        </div>
+                    </div>
 
-                <div class="contract-page">
+                    <div class="contract-title">
+                        <h2>THỎA THUẬN HỖ TRỢ TÀI CHÍNH (CHÁY XE, MẤT XE)</h2>
+                        <p style="text-align: center;">(Đ/v: Khách hàng mua xe tại Hệ thống cửa hàng của Công ty TNHH Kinh doanh dịch vụ Quang Vinh bị mất xe, cháy xe)</p>
+                    </div>
+
+                    <p style="margin-top: 10px; margin-bottom: 5px; text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Căn cứ Bộ luật Dân sự 2015;</p>
+                    <p style="margin-bottom: 5px; text-align: justify;">Căn cứ Hóa đơn mua bán xe số: <b class="out_sohd" style="color: red;"></b> ngày <span class="out_ngay_text" style="color: red;"></span> giữa Công ty TNHH Kinh doanh dịch vụ Quang Vinh và Ông/ (Bà) <b class="out_hoten" style="color: red;"></b>;</p>
+                    <p style="margin-bottom: 5px; text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Căn cứ vào chính sách, tinh thần hỗ trợ khách hàng của Công ty TNHH Kinh doanh dịch vụ Quang Vinh;</p>
+                    <p style="margin-bottom: 6px; text-align: justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Căn cứ nhu cầu và thỏa thuận giữa các Bên;</p>
+                    <p style="margin-bottom: 5px; text-align: justify;">Hôm nay, ngày <span class="out_ngay_text" style="color: red;"></span>, tại địa chỉ cửa hàng của Công ty TNHH Kinh doanh dịch vụ Quang Vinh số: 125-127, đường 14/10, Xã Tiền Hải , Tỉnh Hưng Yên</p>
+                    <p style="margin-bottom: 8px;">Chúng tôi gồm:</p>
+
+                    <div class="contract-section">I. &nbsp;&nbsp;&nbsp;&nbsp; CÔNG TY TNHH KINH DOANH DỊCH VỤ QUANG VINH (“BÊN A”)</div>
+                    <p>- MST &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b>1001012641</b></p>
+                    <p>- Địa chỉ trụ sở &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Nhà ông Vinh, tổ dân phố số 5, thị trấn Tiền Hải, huyện Tiền Hải, tỉnh Thái Bình</p>
+                    <p>- Đại diện theo pháp luật: Ông <b>Nguyễn Văn Vinh</b></p>
+                    <p>- Di động &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 0904 388 299 – Hotline: 0904 947 926</p>
+                    <p>- Số tài khoản &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 110001115 tại Ngân hàng Thương mại Cổ phần Công thương Việt Nam (Vietinbank) – Chi nhánh Tiền Hải, Thái Bình</p>
+                    <p>- Đại diện theo ủy quyền: Ông/ (Bà) <b>Bùi Thị Hải Yến</b> &nbsp;&nbsp;&nbsp;&nbsp; Chức vụ: KTTH Vinfast Quang Vinh 8 – Tiền Hải 2</p>
+                    <p>- Địa chỉ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Số 125-128 đường 14/410, Xã Tiền Hải, Tỉnh Hưng Yên &nbsp;&nbsp;&nbsp;&nbsp; Sinh năm: 1996</p>
+                    <p>- CC số &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 034196001536 ; cấp ngày: 19/12/2021; nơi cấp: Cục Cảnh sát quản lý hành chính về trật tự xã hội</p>
+
+                    <div class="contract-section">II. &nbsp;&nbsp;&nbsp; KHÁCH HÀNG (“BÊN B”):</div>
+                    <p>- Họ và Tên &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b class="out_hoten" style="color: red;"></b></p>
                     <p>- Sinh năm &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="out_ngaysinh" style="color: red;"></span></p>
                     <p>- CC số &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b class="out_cccd" style="color: red;"></b> cấp ngày <span class="out_ngaycap" style="color: red;"></span> ; nơi cấp: <span class="out_noicap" style="color: red;"></span></p>
                     <p>- Địa chỉ liên hệ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <span class="out_diachi bold" style="color: red;"></span></p>
                     <p>- Điện thoại &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b class="out_sdt" style="color: red;"></b></p>
 
-                    <div class="contract-section" style="text-align: center; margin-top: 10px; margin-bottom: 8px; text-decoration: underline;">XÉT RẰNG:</div>
+                    <div class="page-number">1</div>
+                </div>
+
+                <!-- TRANG 2 -->
+                <div class="contract-page">
+                    <div class="contract-section" style="text-align: center; margin-top: 5px; margin-bottom: 8px; text-decoration: underline;">XÉT RẰNG:</div>
                     <p style="margin-bottom: 5px;">Bên A là chủ thể có đủ năng lực, điều kiện để thực hiện hoạt động bán xe điện ,xe máy/ xe mô tô theo quy định pháp luật.</p>
                     <p style="margin-bottom: 6px;">Bên B là chủ thể mua xe Vinfast <b class="out_loaixe bold" style="color: red;"></b> của Bên A với các thông số sau:</p>
                     <p>- Loại xe &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b class="out_loaixe bold" style="color: red;"></b></p>
@@ -947,7 +998,7 @@
                     <p>- Số khung &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b class="out_sk bold" style="color: red;"></b></p>
                     <p>- Số máy &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b class="out_sm bold" style="color: red;"></b></p>
 
-                    <p style="margin-top: 10px; margin-bottom: 8px;"><b>NAY, BẰNG VĂN BẢN NÀY,</b> Hai Bên tự nguyện, thỏa thuận và cam kết các nội dung sau đây:</p>
+                    <p style="margin-top: 8px; margin-bottom: 6px;"><b>NAY, BẰNG VĂN BẢN NÀY,</b> Hai Bên tự nguyện, thỏa thuận và cam kết các nội dung sau đây:</p>
 
                     <div class="contract-section">ĐIỀU 1: MỤC ĐÍCH CỦA THỎA THUẬN</div>
                     <p><b>1.1.</b> Bên A đồng ý hỗ trợ một phần tài chính nếu Bên B thuộc các trường hợp mất xe là điều kiện được hỗ trợ được quy định tại Điều 2 của Thỏa thuận này.</p>
@@ -961,11 +1012,6 @@
                     <p><b>2.3.</b> Xe bị mất kể từ ngày thứ 50 (năm mươi) trở lên.</p>
                     <p><b>2.4.</b> Bên B phải cung cấp cho Bên A đầy đủ các giấy tờ, tài liệu sau đây:</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;(i) &nbsp;&nbsp; Tài liệu chứng minh quyền sở hữu hợp pháp đối với phương tiện bị mất.</p>
-
-                    <div class="page-number">2</div>
-                </div>
-
-                <div class="contract-page">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;(ii) &nbsp;&nbsp; Tài liệu chứng minh Bên B đã mua hoặc được sở hữu xe hợp pháp từ các cửa hàng thuộc hệ thống của Bên A, gồm: Thỏa thuận hỗ trợ tài chính, Hóa đơn VAT photo (nếu có) do Bên A cung cấp.</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;(iii) &nbsp; Tài liệu đăng ký xe, gồm: Giấy đăng ký xe được cấp bởi Cơ quan Công an có thẩm quyền ; Bảo hiểm xe cơ giới còn thời hạn; Giấy tờ đăng ký cư trú tại xã Quận ,Tỉnh,Thành Phố.</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;(iv) &nbsp; Đối với trường hợp bị mất xe, Bên B phải cung cấp thêm giấy tờ, tài liệu và chứng cứ chứng minh xe bị mất bao gồm: bản photo Đơn trình báo mất phương tiện gửi cho Cơ quan Công an có thẩm quyền; Biên bản xác nhận từ Cơ quan Công an có thẩm quyền về việc mất xe.</p>
@@ -977,7 +1023,12 @@
                     <p><b>4.1.</b> Trường hợp Bên B bị mất xe, Bên A hỗ trợ tối đa <b>50% (năm mươi phần trăm)</b> giá trị xe, tối đa: <b>20.000.000 VNĐ</b> (Bằng chữ: Hai mươi triệu đồng).</p>
                     <p>Giá trị được xác định dựa trên hóa đơn giá trị gia tăng (VAT) tại thời điểm phát hành hóa đơn.</p>
 
-                    <div class="contract-section">ĐIỀU 5: QUY TRÌNH HỖ TRỢ KHI BÊN B BỊ MẤT XE</div>
+                    <div class="page-number">2</div>
+                </div>
+
+                <!-- TRANG 3 -->
+                <div class="contract-page">
+                    <div class="contract-section" style="margin-top: 0;">ĐIỀU 5: QUY TRÌNH HỖ TRỢ KHI BÊN B BỊ MẤT XE</div>
                     <p><b>5.1.</b> Trong vòng 02 (hai) ngày kể từ ngày phát hiện mất xe, Bên B có trách nhiệm thông báo vụ việc với Hệ thống của Bên A thông qua một trong hai hình thức:</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;(i) &nbsp;&nbsp; Trực tiếp tại cửa hàng nơi mua xe.</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;(ii) &nbsp; Gọi đến Hotline: 0904 947 926.</p>
@@ -988,11 +1039,6 @@
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Ngân hàng &nbsp;&nbsp;&nbsp;&nbsp;: .................................................................................................</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Số tài khoản &nbsp;&nbsp;: .................................................................................................</p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Chủ tài khoản : .................................................................................................</p>
-
-                    <div class="page-number">3</div>
-                </div>
-
-                <div class="contract-page">
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Nội dung &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: [QUANG VINH HO TRO MAT XE HOP DONG SO <span class="out_sohd" style="color: red;"></span>]</p>
                     <p><b>5.4.</b> Trường hợp Bên A phát hiện Bên B có hành vi gian lận, cố tình gây ra sự việc mất xe để nhận khoản hỗ trợ, ngoài việc chịu trách nhiệm theo quy định pháp luật, Bên B phải hoàn trả toàn bộ số tiền mà Bên A đã hỗ trợ và một khoản chi phí mà Bên A đã hỗ trợ Bên B tiếp nhận, xử lý hồ sơ tương ứng với số tiền: <b>2.500.000 VNĐ</b> (Bằng chữ: Hai triệu năm trăm nghìn đồng)/ một trường hợp.</p>
                     <p><b>5.5.</b> Bên A được quyền tạm giữ toàn bộ các giấy tờ, vật dụng liên quan đến xe bị mất bao gồm nhưng không giới hạn: giấy tờ đăng ký xe; bảo hiểm xe cơ giới; chìa khóa xe trước khi Bên B nhận khoản hỗ trợ.</p>
@@ -1011,10 +1057,6 @@
                     <p><b>7.5.</b> Có nghĩa vụ bàn giao cho Bên A các giấy tờ, tài sản theo khoản 2.5 Điều 2 của Thỏa thuận.</p>
                     <p><b>7.6.</b> Có nghĩa vụ hoàn trả khoản hỗ trợ khi tìm lại được xe theo khoản 5.6. Điều 5 của Thỏa thuận.</p>
 
-                    <div class="page-number">4</div>
-                </div>
-
-                <div class="contract-page">
                     <div class="contract-section">ĐIỀU 8. ĐIỀU KHOẢN CAM KẾT CHUNG</div>
                     <p><b>8.1.</b> Bằng sự hiểu biết tốt nhất của mình, các bên đã đọc, hiểu và tự nguyện ký kết Thỏa thuận này.</p>
                     <p><b>8.2.</b> Thỏa thuận hỗ trợ tài chính này là một phần không thể tách rời của Hóa đơn mua bán xe số: <b class="out_sohd" style="color: red;"></b> ngày <span class="out_ngay_text" style="color: red;"></span> giữa Công ty TNHH Kinh doanh dịch vụ Quang Vinh và Ông/ (Bà) <br><b class="out_hoten" style="color: red;"></b></p>
@@ -1031,9 +1073,9 @@
                             <div class="sign-sub" style="font-size: 9pt;">(Ký, ghi rõ họ tên)</div>
                         </div>
                     </div>
-                    <div class="sign-space" style="height: 50px;"></div>
+                    <div class="sign-space" style="height: 40px;"></div>
 
-                    <div class="page-number">5</div>
+                    <div class="page-number">3</div>
                 </div>
             </div>
 
